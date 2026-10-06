@@ -43,7 +43,7 @@ PHRASES = [
     (r"\bput (it )?away\b|\bfold (it )?up\b|\bclose (it )?up\b", " fold "),
     (r"\bhook (it )?up\b", " connect "),
     (r"\bwireless(ly)?\b", " bluetooth "),
-    (r"\b(plug|connect)\w* (in |into |my |your |wired )*(head ?phones|earbuds|earphones)\b", " plug jack "),
+    (r"\bplug\w* (in |into |my |your |wired )*(head ?phones|earbuds|earphones)\b", " plug jack "),
     (r"\b(wired )?(head ?phones|earbuds|earphones) (in|into)\b", " jack "),
     (r"\bfrom (the )?(behind|back|rear)\b|\bfrom the side\b|\bother side\b|\banother angle\b|\bdifferent angle\b|\brotate\b|\bturn it around\b", " viewrequest "),
     (r"\bdb\b|\bdecibels?\b", " noise "),
@@ -460,6 +460,13 @@ class AnswerEngine:
     def _primary_from_detected(self, intent, detected):
         if len(detected) == 1:
             return detected[0]
+        # In "connect headphones to Mac", the headphones own the procedure;
+        # the more specific destination name must not steal the primary role.
+        connection = re.search(r'\bconnect\s+(.+?)\s+(?:to|with)\s+', intent.question, re.I)
+        if connection:
+            subjects = self.detect_products(interpret(connection.group(1)))
+            if len(subjects) == 1 and subjects[0] in detected:
+                return subjects[0]
         owners = [d for d in detected if self.best_procedure(intent, self.products()[d])[0]
                   and intent.actions]
         if len(owners) == 1:

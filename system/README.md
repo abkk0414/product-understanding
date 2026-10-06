@@ -1,5 +1,8 @@
 # Evidence extraction system
 
+For running the website from a fresh clone, start with the
+[local website setup guide](../README.md), including its example configuration.
+
 This directory implements the four-stage evidence pipeline for Python 3.12.
 Claims remain immutable `CANDIDATE` records; verifier findings live in
 `verdicts.json`, and human publication dispositions live in `reviews.json`.

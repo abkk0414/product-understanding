@@ -179,6 +179,8 @@ class Store:
 
     def import_scene_assets(self):
         """Register already-rendered scene clips once (idempotent)."""
+        from app.pipeline import library
+        library.import_assets(self)
         for (product_dir, procedure_id), scene in scenes.SCENES.items():
             for view, spec in scene["views"].items():
                 source = spec.get("imported")

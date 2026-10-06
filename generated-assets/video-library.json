@@ -1,0 +1,25 @@
+{
+  "assets": [
+    {
+      "id": "vid_e13cad3b79ec",
+      "product_dir": "bose-qc-ultra-headphones",
+      "procedure_id": "connect_aux_cable",
+      "view": "main",
+      "scene_version": "astra-blender-v2-c24bda63218022355aebdfc3",
+      "path": "generated-assets/bose-qc-ultra-headphones/mac-analog/video.mp4",
+      "poster": "generated-assets/bose-qc-ultra-headphones/mac-analog/poster.jpg",
+      "sha256": "f2e67d9359fa650d2a238df57b80e0f6391dd880cba67f69b6ae0873ee3c36d1",
+      "audience": "customer",
+      "origin": "rendered",
+      "label": "Bose headphones to Mac \u00b7 analog audio cable \u00b7 3D demonstration",
+      "caveat": "3D illustration made with Astra and Blender; automatically checked against product references. Simplified details: The compatible plugs use simplified, unbranded straight housings; they are not exact replicas of the supplied Bose accessory.; Cable routing is illustrative, with constant-size articulated sections and no simulated cable dynamics.; Fine surface textures, keyboard legends and exact wordmark typography are simplified. The Mac display is inactive rather than reproducing macOS or reference wallpaper.; The headphones are held in an instructional pose without a modeled hand so the lower-edge AUX socket remains accessible.",
+      "chapters": "{\"claim_bqcu2_step_aux_1\": 2.0, \"claim_bqcu2_step_aux_2\": 6.5}",
+      "duration": 14.0,
+      "created_at": "2026-09-27T17:43:36+00:00",
+      "question": "How do I connect QuietComfort headphones to mac using the analog audio cable",
+      "secondary_products": [
+        "apple-macbook-air-13-m3"
+      ]
+    }
+  ]
+}

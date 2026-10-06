@@ -65,6 +65,11 @@ def request_payload(row, store=None):
 
 def video_for_document(store, document, question, visitor, context=None):
     """Return the `video` section for an answer document (or None)."""
+    from app.pipeline import library
+    curated = library.matching_assets(store, document, question)
+    if document.get('status') == 'needs_input' and curated:
+        return {'state': 'ready', 'assets': [asset_payload(a) for a in curated.values()],
+                'views': [], 'requested_view': 'main'}
     if document.get("status") not in ("ready", "partial"):
         return None
     coverage = document.get("coverage") or {}
@@ -82,6 +87,7 @@ def video_for_document(store, document, question, visitor, context=None):
     scene = scenes.scene_for(product_dir, procedure_id)
     variant = store.variant_for(product_dir, procedure_id, question)
     available = store.assets_for(product_dir, procedure_id, variant or None)
+    available.update(curated)
     ordered = [available[v] for v in scenes.VIEW_ORDER if v in available]
     renderable = [v for v in scenes.VIEW_ORDER if scene and v in scene["views"]]
     base = {"product_dir": product_dir, "procedure_id": procedure_id,

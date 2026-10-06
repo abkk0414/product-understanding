@@ -699,6 +699,12 @@ function renderDevPlayer(clips) {
 function renderAnswerDocument(documentPayload) {
   if (documentPayload.status === "needs_input") {
     renderDocumentClarification(documentPayload);
+    if (documentPayload.video?.assets?.length) {
+      const example = element("article", "answer-doc");
+      example.append(element("h2", "", "Available video: connect with an analog audio cable"));
+      example.append(renderDevPlayer(documentPayload.video.assets));
+      resultsRegion.append(example);
+    }
     return;
   }
   const article = element("article", `answer-doc status-${documentPayload.status}`);
